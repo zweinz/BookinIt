@@ -97,7 +97,7 @@
             </div>
           <div class="row-fluid">
             <div class="span12">
-              <h2>Discussion!</h2>
+              <!--h2>Discussion!</h2-->
               <!--div class="fb-comments" data-width="700"></div-->
             </div><!--/span-->
           </div><!--/row-->
@@ -137,7 +137,7 @@ function getParameterByName(name)
 }
 
 function rackspaceUrl(pageNumber) {
-  return rackspaceBase + getParameterByName('bookTitle') + '__' + getParameterByName('bookUnique') + '__PAGE' + pageNumber + '.jpg';
+  return rackspaceBase + getParameterByName('bookTitle') + '__' + getParameterByName('bookUnique') + '__PAGE' + pageNumber + '.jpg?rand='+Math.random();
 }
 
 function loadImages(div, start) {
