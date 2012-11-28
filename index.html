@@ -121,8 +121,9 @@
 
 <script>
 
-var chunkSize = 3;
+var chunkSize = 5;
 var cdnBase = 'http://s3.amazonaws.com/bookinit/';
+var PAGE_NUMBER = 'pageNumber';
 
 // from stack overflow
 function getParameterByName(name)
@@ -141,16 +142,24 @@ function cdnURL(pageNumber) {
   return cdnBase + getParameterByName('bookUnique') + '/page' + pageNumber + '.jpg';
 }
 
-function loadImages(div, start) {
-  for(var i = start; i < chunkSize + start; i++) {
-    var img = $(document.createElement('img')).attr('src', cdnURL(i)).data('pageNumber', i);
-    var imgContainer = $(document.createElement('div')).addClass('item');
-    if(i==0) {
+function loadPageIntoDiv(img, div) {
+    var pageNumber = img.data('pageNumber');
+    var imgContainer = $(document.createElement('div')).addClass('item').addClass('page' + pageNumber);
+    
+    if(pageNumber == 0) {
       imgContainer.addClass('active');
     }
     imgContainer.append(img);
     div.append(imgContainer);
+}
 
+function loadImages(div, start) {
+  for(var i = start; i < chunkSize + start; i++) {
+
+    var img = $(document.createElement('img')).attr('src', cdnURL(pageNumber))
+                                              .data(PAGE_NUMBER, pageNumber);
+
+    loadPageIntoDiv(img, div);
     
     img.error(function() {
         // remove
@@ -160,7 +169,7 @@ function loadImages(div, start) {
     
     img.load(function() {
       // if you're a multiple of chunkSize, then load the next Chunk
-      var pageNumberPlus = $(this).data('pageNumber') + 1;
+      var pageNumberPlus = $(this).data(PAGE_NUMBER) + 1;
       if(pageNumberPlus % chunkSize == 0) {
         loadImages(div, pageNumberPlus);
       }
@@ -168,9 +177,23 @@ function loadImages(div, start) {
   }
 }
 
-$(function() {
-  loadImages($('.carousel-inner'), 0);
+function addImageLocally(pageNumber, data) {
+  var img = $(document.createElement('img')).attr('src', data).data(PAGE_NUMBER, pageNumber);
+  loadPageIntoDiv(img, $('.carousel-inner'));
+}
+
+function pdfUploaded() {
   $('a.download-pdf').attr('href', cdnBase + getParameterByName('bookUnique') + '/book.pdf');
+  $('a.download-pdf').text('Download PDF');
+}
+
+$(function() {
+  if(!getParameterByName('local')) {
+    loadImages($('.carousel-inner'), 0);
+    $('a.download-pdf').attr('href', cdnBase + getParameterByName('bookUnique') + '/book.pdf');
+  } else {
+    $('a.download-pdf').text('PDF Uploading');
+  }
 });
 
 </script>
