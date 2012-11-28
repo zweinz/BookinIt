@@ -126,74 +126,71 @@ var cdnBase = 'http://s3.amazonaws.com/bookinit/';
 var PAGE_NUMBER = 'pageNumber';
 
 // from stack overflow
-function getParameterByName(name)
-{
-  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-  var regexS = "[\\?&]" + name + "=([^&#]*)";
-  var regex = new RegExp(regexS);
-  var results = regex.exec(window.location.search);
-  if(results == null)
-    return "";
-  else
-    return decodeURIComponent(results[1].replace(/\+/g, " "));
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(window.location.search);
+    if (results == null) return "";
+    else return decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 function cdnURL(pageNumber) {
-  return cdnBase + getParameterByName('bookUnique') + '/page' + pageNumber + '.jpg';
+    return cdnBase + getParameterByName('bookUnique') + '/page' + pageNumber + '.jpg';
 }
 
 function loadPageIntoDiv(img, div) {
     var pageNumber = img.data('pageNumber');
     var imgContainer = $(document.createElement('div')).addClass('item').addClass('page' + pageNumber);
-    
-    if(pageNumber == 0) {
-      imgContainer.addClass('active');
+
+    if (pageNumber == 0) {
+        imgContainer.addClass('active');
     }
     imgContainer.append(img);
     div.append(imgContainer);
 }
 
 function loadImages(div, start) {
-  for(var i = start; i < chunkSize + start; i++) {
+    for (var i = start; i < chunkSize + start; i++) {
 
-    var img = $(document.createElement('img')).attr('src', cdnURL(pageNumber))
-                                              .data(PAGE_NUMBER, pageNumber);
+        var img = $(document.createElement('img')).attr('src', cdnURL(i))
+            .data(PAGE_NUMBER, i);
 
-    loadPageIntoDiv(img, div);
-    
-    img.error(function() {
-        // remove
-        var parent = $(this).parent();
-        parent.remove();
-    });
-    
-    img.load(function() {
-      // if you're a multiple of chunkSize, then load the next Chunk
-      var pageNumberPlus = $(this).data(PAGE_NUMBER) + 1;
-      if(pageNumberPlus % chunkSize == 0) {
-        loadImages(div, pageNumberPlus);
-      }
-    });
-  }
+        loadPageIntoDiv(img, div);
+
+        img.error(function () {
+            // remove
+            var parent = $(this).parent();
+            parent.remove();
+        });
+
+        img.load(function () {
+            // if you're a multiple of chunkSize, then load the next Chunk
+            var pageNumberPlus = $(this).data(PAGE_NUMBER) + 1;
+            if (pageNumberPlus % chunkSize == 0) {
+                loadImages(div, pageNumberPlus);
+            }
+        });
+    }
 }
 
 function addImageLocally(pageNumber, data) {
-  var img = $(document.createElement('img')).attr('src', data).data(PAGE_NUMBER, pageNumber);
-  loadPageIntoDiv(img, $('.carousel-inner'));
+    var img = $(document.createElement('img')).attr('src', data).data(PAGE_NUMBER, pageNumber);
+    loadPageIntoDiv(img, $('.carousel-inner'));
 }
 
 function pdfUploaded() {
-  $('a.download-pdf').attr('href', cdnBase + getParameterByName('bookUnique') + '/book.pdf');
-  $('a.download-pdf').text('Download PDF');
+    $('a.download-pdf').attr('href', cdnBase + getParameterByName('bookUnique') + '/book.pdf');
+    $('a.download-pdf').text('Download PDF');
 }
 
-$(function() {
-  if(!getParameterByName('local')) {
-    loadImages($('.carousel-inner'), 0);
-    $('a.download-pdf').attr('href', cdnBase + getParameterByName('bookUnique') + '/book.pdf');
-  } else {
-    $('a.download-pdf').text('PDF Uploading');
-  }
+$(function () {
+    if (!getParameterByName('local')) {
+        loadImages($('.carousel-inner'), 0);
+        $('a.download-pdf').attr('href', cdnBase + getParameterByName('bookUnique') + '/book.pdf');
+    } else {
+        $('a.download-pdf').text('PDF Uploading');
+    }
 });
 
 </script>
