@@ -67,38 +67,21 @@ function loadImages(div, start) {
 
 function setPrintButton() {
     var pdfURL = cdnBase + getParameterByName('bookUnique') + '/book.pdf';
-    var choice = $('select.print-select').val();
     var image = $('.item img')[0];
     var width = image.naturalWidth;
     var height = image.naturalHeight;
 
-    if(choice == "book") {
-        var pages = $('.item').length;
-        var src = pdfURL;
-        var filetype = 'pdf';
-        // width & height must be in mm.  assume 8.5 x 11
-        if(width < height) {
-            width = 215.9;
-            height = 279.4;
-        } else {
-            width = 279.4;
-            height = 215.9;
-        }
-        $('.book-details').show();
+    var pages = $('.item').length;
+    var src = pdfURL;
+    var filetype = 'pdf';
+
+    // width & height must be in mm.  assume 8.5 x 11
+    if(width < height) {
+        width = 215.9;
+        height = 279.4;
     } else {
-        image = $('.item img')[choice];
-        var pages = 1;
-        var src = image.src;
-        var filetype = 'image';
-        $('.book-details').hide();
-        // width & height must be in pixels
-        if(width < height) {
-            width = 2304;
-            height = 3072;
-        } else {
-            width = 3072;
-            height = 2304;
-        }
+        width = 279.4;
+        height = 215.9;
     }
 
     $('.print-button').html('');
@@ -122,6 +105,10 @@ function setPrintButton() {
 }
 
 $(function () {
+    if(!getParameterByName('local') && !getParameterByName('bookTitle') && !getParameterByName('bookUnique')) {
+        window.location = 'itms://itunes.com/apps/picturesquephotobooksandcollagesdigitalandprint';
+    }
+
     if (getParameterByName('local')) {
         // run in a webview on iOS
         $('a.download-pdf').text('PDF Uploading');
@@ -129,7 +116,6 @@ $(function () {
         loadImages($('.carousel-inner'), 0);
     }
 
-    $('select').change(setPrintButton);
     $('.fb-comments').attr('data-href', window.location.href);
 
     FB.XFBML.parse();
