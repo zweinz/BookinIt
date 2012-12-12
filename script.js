@@ -20,7 +20,7 @@ function loadPageIntoDiv(img, div) {
     var pageNumber = img.data('pageNumber');
     var imgContainer = $(document.createElement('div')).addClass('item').addClass('page' + pageNumber);
 
-    if (pageNumber == 0) {
+    if ($('.item').length == 0) {
         imgContainer.addClass('active');
     }
     imgContainer.append(img);
@@ -118,7 +118,7 @@ $(function () {
 
     $('.fb-comments').attr('data-href', window.location.href);
 
-    // FB.XFBML.parse();
+    FB.XFBML.parse();
 });
 
 
