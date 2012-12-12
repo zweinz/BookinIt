@@ -20,9 +20,6 @@ function loadPageIntoDiv(img, div) {
     var pageNumber = img.data('pageNumber');
     var imgContainer = $(document.createElement('div')).addClass('item').addClass('page' + pageNumber);
 
-    if ($('.item').length == 0) {
-        imgContainer.addClass('active');
-    }
     imgContainer.append(img);
     div.append(imgContainer);
 
@@ -32,6 +29,12 @@ function loadPageIntoDiv(img, div) {
 
     // refresh data
     setPrintButton();
+}
+
+function setActive() {
+    if ($('.item.active').length == 0) {
+        $($('.item')[0]).addClass('active');
+    }
 }
 
 function loadImages(div, start) {
@@ -51,6 +54,8 @@ function loadImages(div, start) {
             
             $('select.print-select option[value=' + pageNumber + ']').remove();
 
+            setActive();
+
             // refresh data
             setPrintButton();
         });
@@ -61,6 +66,8 @@ function loadImages(div, start) {
             if (pageNumberPlus % chunkSize == 0) {
                 loadImages(div, pageNumberPlus);
             }
+
+            setActive();
         });
     }
 }
