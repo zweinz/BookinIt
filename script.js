@@ -32,8 +32,16 @@ function loadPageIntoDiv(img, div) {
 }
 
 function setActive() {
-    if ($('.item.active').length == 0) {
+    var activeItems = $('.item.active').length;
+    if (activeItems == 0) {
         $($('.item')[0]).addClass('active');
+    }
+
+    var numItems = $('.item').length;
+    if (numItems > 1) {
+        $('.carousel-control').show();
+    } else {
+        $('.carousel-control').hide();
     }
 }
 
