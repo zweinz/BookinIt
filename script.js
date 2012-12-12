@@ -118,7 +118,7 @@ $(function () {
 
     $('.fb-comments').attr('data-href', window.location.href);
 
-    FB.XFBML.parse();
+    // FB.XFBML.parse();
 });
 
 
