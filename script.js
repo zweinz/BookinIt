@@ -121,7 +121,7 @@ function setPrintButton() {
 
 $(function () {
     if(!getParameterByName('local') && !getParameterByName('bookTitle') && !getParameterByName('bookUnique')) {
-        window.location = 'itms://itunes.com/apps/picturesquephotobooksandcollagesdigitalandprint';
+        window.location = 'http://itunes.com/apps/picturesquephotobooksandcollagesdigitalandprint';
     }
 
     if (getParameterByName('local')) {
