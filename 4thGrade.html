@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!-- TODO fill in description, author, and icons -->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Teaching iOS to 4th Graders</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Picturesque Books">
+
+    <!-- Styles -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <style>
+    	body {padding:20px;}
+    </style>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-36777580-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+    <h3>Teaching iOS Development to 4th Graders</h3>
+    <h5>The <a href="." target=_blank>Picturesque Books</a> blog</h5>
+    <br/>
+    <div class="row">
+
+        <!-- Main Section -->
+        <div class="span12">
+            
+			 <p>&ldquo;Can we make Karel shoot things?&rdquo;<br />
+			&ldquo;Can we change what Karel looks like?&rdquo;<br />
+			&ldquo;Where is that letter on the keyboard?&rdquo;</p>
+
+			<p>My first class teaching iOS wasn&rsquo;t going quite as I had planned. </p>
+
+			<p><br/>* * *</p><br/>
+
+			<p>A few weeks earlier, I had responded to a Craigslist ad to teach programming to gifted 4th graders.</p>
+
+			<p>I was, of course, skeptical.</p>
+
+			<p>There have been a number of successful young app developers; one twelve-year-old even gave a TED talk because he created an app. The startup MakeGamesWith.Us advertises, &ldquo;It&rsquo;s so easy we got high school students to do it.&rdquo; New initiatives, like CodeHS, provide an online platform to teach young students how to code. But these stories, increasingly common, have parents, teachers, and students thinking, &ldquo;Why not me? Why not my kids? Why not younger?&rdquo;</p>
+
+			<p>I convinced myself that there was no harm in trying. If getting the kids excited was a primary goal, it would be hard to do much better than having them build an app.</p>
+
+			<p><br/>* * *</p><br/>
+
+			<p>For the first class, I wrote a port of Karel the Robot to iOS. After the first twenty minutes of the hour-long class were spent logging into the computers, downloading the starter project from github, figuring out where it downloaded to and opening XCode, I had them run the example. I opted for an exploratory introduction, starting without code: using the four buttons in the app, try to make a T out of beepers.<br />
+			&#65532;<br />
+			After about five minutes of trying to get me to tell them how to do it, they were all able to figure it out within about three minutes. Then things got interesting. I told them that if they just wrote the code in the buttons into the &lsquo;run&rsquo; section of the SuperKarelViewController.m file, Karel would do whatever they commanded automatically.</p>
+
+			<p>After a short lesson on how to navigate the tree-like file directory on the left of XCode, all but one was able to open the file. But as soon as the first error came up, we were detoured. </p>
+
+			<p>&ldquo;Can we change what Karel looks like?&rdquo; I was excited that they brought this up, and half disappointed that I hadn&rsquo;t thought of it myself. Lots of research has shown that something as simple as having a customized avatar increases engagement drastically.<br />
+			&ldquo;Sure, just replace the karel.png file,&rdquo; I said.</p>
+
+			<p>After a short lesson on how to download pictures from the internet (including how to control-click on a mac), drag (it&rsquo;s far more efficient, albeit not as entertaining, to use one finger to hold down the trackpad button and use another finger to drag across than to press one finger down really hard and simultaneously drag it across), rename files, and navigate the file system, they were able to change the image of Karel.</p>
+
+			<p>After a short lesson the difference between parentheses ( ), square brackets [ ], curly braces { }, and where to find them on the keyboard, half of the red exclamation marks went away.</p>
+
+			<p>After running around the room, explaning the difference between &ldquo;[self putBeeper];&rdquo; and &ldquo;put beeper&rdquo;, and pointing out a couple dozen spelling and capitalization errors (these were incredibly difficult for fourth graders to spot, even when I told them in which word to look), the rest of the exclamation marks went away. Most of the class had a runnable program.</p>
+
+			<p>One asked how we could make a command for turnLeft, since we could only say turnRight, which was annoying. Two exceptionally bright girls stayed after class, and I taught them how to create helper methods. When they finally left, a half hour later, they had probably written a couple hundred lines of code between the two of them, drawing with Karel like pros.</p>
+
+			<p>But when they didn&rsquo;t want to leave, I noticed what would become perhaps the single greatest problem. They had to put back the school&rsquo;s computers into a cart without a way to see their work again or show it off at home. The next week they would come back to class and remember what? Time would tell.</p>
+
+			<p><br/>* * *</p><br/>
+
+			<p>Within hours of the class ending, I received an email from a mother saying that her kid was struggling to understand how everything worked. Perfect, was my first thought, that&rsquo;s what real programming is, and it&rsquo;ll be good for them to struggle. But on second thought, I figured, maybe I should balance the exploratory nature of the first class with a more structured, explanatory approach.</p>
+
+			<p>So in the second class, I typed up in the comments of the file, an introduction to programming, and we read through it a line at a time. This is what a comment is. Every left parenthesis &lsquo;(&lsquo; needs to end with a right parenthesis &lsquo;)&rsquo;. Every statement ends with a semicolon. This is the syntax (define syntax) to define a method.</p>
+
+			<p>We defined helper methods so that it would be easier to write more complicated programs. Again, something as simple as the following method had lots of pitfalls. </p>
+
+			<p>&ndash; (void) turnAround {<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;[self turnRight];<br />
+			&nbsp;&nbsp;&nbsp;&nbsp;[self turnRight];<br />
+			}</p>
+
+			<p>Lots of people struggled with ( ) vs [ ] vs { }, capitalization, remembering where spaces were or were not permitted, and when the order mattered.</p>
+
+			<p>Even at the end of the course, none of the students would remember this syntax. But this exercise taught me a lot about my students. Even among these gifted students with roughly the same experience coming in, some had practically finished the assignment by the time others were able to download the starter code and open the file. I could also feel that I was losing some of the students&rsquo; interest with the unexciting lesson. And Karel still couldn&rsquo;t shoot anything.</p>
+
+			<p><br/>* * *</p><br/>
+
+			<p>The third week, I turned to a new approach, one that, for better or worse, I would stick with for the rest of the course. Inspired by Zed Shaw&rsquo;s Learn X the Hard Way series and Khan Academy&rsquo;s flipped classroom model, I typed up and printed out a set of explicit instructions (including the code they were to type out) that I handed out to each student to follow asynchronously rather than trying to teach a single lesson synchronously to an entire class. Then, I could spend my time (literally) running from student to student helping them fix their bugs.</p>
+
+			<p>There were problems with this approach, of course. My instructions weren&rsquo;t perfect. Students, while waiting for me to come help them, switched to &ldquo;temporarily&rdquo; playing video games in the mean time. But more importantly, in hindsight:</p>
+
+			<p>The culture of everyone being in this together collapsed.<br />
+			They weren&rsquo;t that good at following the instructions.</p>
+
+			<p>A discussion of the former is beyond the scope of this particular post, one that I still need more time to think about (and one that, having taken many Coursera classes at Stanford, I see as a problem even at the college level in large lecture classes).</p>
+
+			<p>The latter was particularly disturbing because programming, at its most basic level, is giving and following instructions. When a student asked &ldquo;What do I do next&rdquo; and I responded, &ldquo;Go to the next step&rdquo;, and then the student asked five minutes later, &ldquo;Why isn&rsquo;t it working?&rdquo;, and I responded, &ldquo;Oh, you skipped step 3&rdquo;, I wish I could say I was surprised, but honestly, that&rsquo;s what I was like at that age. Teachers used to give fake quizzes about following the instructions where the first instruction is &ldquo;read all the instructions before you start&rdquo; and the last instruction is &ldquo;if you&rsquo;ve read this don&rsquo;t do any of the quiz.&rdquo; I was one of the 90% that did the entire quiz because I didn&rsquo;t read the instructions.</p>
+
+			<p>By the end of the third week, in which I introduced user interaction and storyboards, I was beginning to doubt whether teaching iOS to fourth graders was a good idea at all. I strongly considered switching to Javascript or Processing, but figured it would just confuse the students more. I decided to let concrete skills take a backseat to two higher level goals for all my future course decisions:</p>
+
+			<p>Programming &ldquo;intuition&rdquo;.<br />
+			Programming excitement.</p>
+
+			<p>If they actually learned the concepts and skills of functions, if-statements, and for-loops, that was just a plus. I wanted to take advantage of their young age to give them a new dimension to their lives. </p>
+
+			<p>Elementary school pianists, when they&rsquo;re learning a Bach invention, have the intuition to get louder when the notes get higher, even though there&rsquo;s no dynamic marking. Middle schoolers, when they&rsquo;re watching football and see a flag on a long run have the intuition to say &ldquo;offensive holding&rdquo; even if they didn&rsquo;t see the penalty. I wanted my young programmers, when something went wrong, not just in their code but in their life, to think &ldquo;oh, let&rsquo;s logically trace this back to where it first started.&rdquo;</p>
+
+			<p>The second goal, excitement, is self-explanatory, but I decided it was time to move on from Karel once every other question became &ldquo;how can we make Karel shoot something&rdquo;, and I sadly responded, &ldquo;that&rsquo;s a little too complicated for the class right now, but you can try to figure it out on your own if you want.&rdquo;</p>
+
+			<p><br/>* * *</p><br/>
+
+			<p>In week four, we created Tic Tac Toe, starting the project from scratch. Unexpected students got better. Others started to give up. Kids got busy and started to come sporadically. With at least a week, and often two, between sessions, I wrote all the instructions with the assumption that they forgot all the previous programming concepts that we learned.</p>
+
+			<p>In weeks five and six, we created a simple calculator program that converted celsius to fahrenheit, calculated absolute value, and for the two students that got it, iteratively calculated a factorial. One student explained to his mother, in detail, the difference between an int and a double, and how an if statement worked.</p>
+
+			<p>In weeks seven and eight, upon a student&rsquo;s request, we created a break the targets / pop the bubbles program.</p>
+
+			<p>In week nine, we created a quiz game that used multiple screens.</p>
+
+			<p>In week ten, we created a guess the number game. Students demonstrated excellent debugging skills. Whereas in week 1, I was literally running around the room to diagnose every single error, my students could now fix a great number of the errors that they had seen before -- from unbalanced braces to forgotten semicolons to the occassional undefined variable.</p>
+
+			<p><br/>* * *</p><br/>
+
+			<p>By the end, my students had:</p>
+
+			<ul>
+				<li>become much better at following instructions, likely just by virtue of repetition</li>
+				<li>learned the XCode programming environment, especially how to use storyboards, incredibly quickly and effectively</li>
+				<li>learned the high level, repetitive concepts: semi-colons, open and closed brackets, the connection between the code and the interface, how everything has to be done explicitly</li>
+				<li>a basic understanding of methods as commands</li>
+				<li>an appreciation of how hard even simple tasks can be</li>
+				<li>an appreciation of how rewarding it is when your code works</li>
+				<li>an understanding of what it means to do programming</li>
+				<li>an intuition of how to read error messages and debugging</li>
+				<li>learned that &ldquo;view&rdquo; is spelled with i before e</li>
+			</ul>
+
+			<p>On the other hand...</p>
+			<ul>
+				<li>They didn&rsquo;t know how to design a program by themselves without instructions</li>
+				<li>They couldn&rsquo;t write an if statement or call a method without something to copy</li>
+				<li>There was still a ton of magic in the syntax. (what&rsquo;s that * for after NSString?)</li>
+			</ul>
+
+			<p>These were, I suppose, tradeoffs that I consciously made. I don&rsquo;t know yet if they were necessary, and I don&rsquo;t know yet if they were smart. But I know one thing. These kids were.</p>
+
+        </div>
+    </div>
+
+    <div class="row">
+    	<div class="span12"
+	        <!-- Social -->
+	        <br/>
+	        <div class="fb-like" data-width="450" data-show-faces="true"></div>
+	        <br/><br/>
+	        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+	        <br/>
+	        <br/>
+
+            <h3> Discussion </h3>
+            <div class="fb-comments" data-href="http://picturesquebooks.com/4thGrade.html" data-width="600" data-num-posts="5"></div>
+	    </div>
+    </div>
+
+    <!-- Javascript -->
+
+    <!-- Facebook -->
+    <div id="fb-root"></div>  
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "http://connect.facebook.net/en_US/all.js#xfbml=1&appId=135307149953317";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!-- Twitter -->
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </body>
+</html>
