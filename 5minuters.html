@@ -83,6 +83,9 @@
 	<div class="timer">
 		<h3 id="time">5:00</h3><a href="#" class="button" id="control-timer">Go!</a> <a href="" class="button">Next</a>
 		<p>Bell will ring when time is up</p>
+		<audio id="bell">
+			<source src="bell.mp3" type="audio/mpeg">
+		</audio>
 	</div>
 
 	<script>
@@ -92,11 +95,13 @@
 		var timer;
 		var timeLeft = fiveMin;
 		var running = false;
+		var bell = document.getElementById('bell');
 
 		var timeStep = function() {
 			if (timeLeft <= 0) {
 				clearInterval(timer);
 				running = false;
+				bell.play();
 			}
 
 			var mins = Math.floor(timeLeft / 60);
@@ -115,10 +120,10 @@
 				clearInterval(timer);
 				timerControl.innerHTML = "Go!";
 				timeDiv.innerHTML = "5:00";
-				timeLeft = fiveMin;
 				running = false;
 			} else {
 				// start the countdown
+				timeLeft = fiveMin;
 				timeStep();
 				timer = setInterval(timeStep, 1000);
 				timerControl.innerHTML = "Reset!";
